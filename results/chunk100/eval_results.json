@@ -1,0 +1,218 @@
+{
+  "summary": {
+    "llm": "Qwen/Qwen2.5-0.5B-Instruct",
+    "top_k": 4,
+    "num_answerable": 24,
+    "num_unanswerable": 6,
+    "retrieval_hit_rate": 0.792,
+    "answer_accuracy": 0.708,
+    "abstention_rate": 0.833,
+    "avg_latency_seconds": 3.43
+  },
+  "details": [
+    {
+      "question": "What BLEU score did the big Transformer achieve on the WMT 2014 English-to-German translation task?",
+      "answerable": true,
+      "answer": "The big Transformer achieved a BLEU score of 28.4 on the WMT 2014 English-to-German translation task.",
+      "retrieval_hit": true,
+      "answer_correct": true
+    },
+    {
+      "question": "Which optimizer was used to train the Transformer models?",
+      "answerable": true,
+      "answer": "Adam",
+      "retrieval_hit": false,
+      "answer_correct": true
+    },
+    {
+      "question": "What is the model dimension d_model of the base Transformer?",
+      "answerable": true,
+      "answer": "The model dimension \\(d_{\\text{model}}\\) of the base Transformer is given in the text as:\n\n\\[d_{\\text{model}} = \\text{dmodel}\\]\n\nSpecifically, it states:\n\n\\[d_{\\text{model}} = 768\\]\n\nSo, the base Transformer has a dimension of 768 units.",
+      "retrieval_hit": false,
+      "answer_correct": false
+    },
+    {
+      "question": "What two unsupervised tasks is BERT pre-trained on?",
+      "answerable": true,
+      "answer": "BERT is pre-trained on two unsupervised tasks:\n\n1. Sentence-level tasks\n2. Token-level tasks",
+      "retrieval_hit": true,
+      "answer_correct": false
+    },
+    {
+      "question": "How many parameters does BERT-LARGE have?",
+      "answerable": true,
+      "answer": "BERT-LARGE has 340M parameters.",
+      "retrieval_hit": true,
+      "answer_correct": true
+    },
+    {
+      "question": "What GLUE score did BERT achieve according to the abstract?",
+      "answerable": true,
+      "answer": "According to the abstract, BERT achieved a score of 80.5 on the official GLUE leaderboard.",
+      "retrieval_hit": true,
+      "answer_correct": true
+    },
+    {
+      "question": "Which large dataset were the biggest Vision Transformer models pre-trained on?",
+      "answerable": true,
+      "answer": "The largest Vision Transformer models were pre-trained on the public ImageNet-21k dataset or the in-house JFT-300M dataset.",
+      "retrieval_hit": true,
+      "answer_correct": true
+    },
+    {
+      "question": "What learnable token is prepended to the sequence of embedded patches in the Vision Transformer?",
+      "answerable": true,
+      "answer": "The learnable token that is prepended to the sequence of embedded patches in the Vision Transformer is `xclass`.",
+      "retrieval_hit": true,
+      "answer_correct": false
+    },
+    {
+      "question": "Which model size variants of ViT are defined in the paper?",
+      "answerable": true,
+      "answer": "The model sizes variants of ViT are defined in the paper as follows:\n\n- Base model: 12x16 input patch size\n- Large model: 24x1024 input patch size\n- Huge model: 32x1280 input patch size\n\nThese are the specific model sizes used in the paper's model configurations.",
+      "retrieval_hit": true,
+      "answer_correct": true
+    },
+    {
+      "question": "What two kinds of memory does the RAG model combine?",
+      "answerable": true,
+      "answer": "The RAG model combines both parametric and non-parametric memory.",
+      "retrieval_hit": true,
+      "answer_correct": true
+    },
+    {
+      "question": "Which retriever does the RAG model use?",
+      "answerable": true,
+      "answer": "The RAG model uses the DPR retriever.",
+      "retrieval_hit": true,
+      "answer_correct": true
+    },
+    {
+      "question": "Which pre-trained sequence-to-sequence model is the generator in RAG?",
+      "answerable": true,
+      "answer": "The generator in RAG is the BART model.",
+      "retrieval_hit": true,
+      "answer_correct": true
+    },
+    {
+      "question": "What does LoRA do to the pre-trained model weights?",
+      "answerable": true,
+      "answer": "LoRA merges the trainable matrices with the frozen weights when deployed, introducing no inference latency compared to a fully fine-tuned model, by construction.",
+      "retrieval_hit": true,
+      "answer_correct": true
+    },
+    {
+      "question": "By what factor does LoRA reduce the number of trainable parameters compared to fine-tuning GPT-3 175B?",
+      "answerable": true,
+      "answer": "LoRA reduces the number of trainable parameters by approximately 20% compared to fine-tuning GPT-3 175B.",
+      "retrieval_hit": false,
+      "answer_correct": false
+    },
+    {
+      "question": "By what factor does LoRA reduce the GPU memory requirement compared to fine-tuning GPT-3 175B?",
+      "answerable": true,
+      "answer": "LoRA reduces the GPU memory requirement by 3 times compared to fine-tuning GPT-3 175B.",
+      "retrieval_hit": true,
+      "answer_correct": true
+    },
+    {
+      "question": "How many parameters does the largest GPT-3 model have?",
+      "answerable": true,
+      "answer": "The largest GPT-3 model, which contains 175 billion parameters, was trained on 175B parameters.",
+      "retrieval_hit": false,
+      "answer_correct": true
+    },
+    {
+      "question": "Which in-context learning settings are evaluated in the GPT-3 paper?",
+      "answerable": true,
+      "answer": "The in-context learning settings evaluated in the GPT-3 paper include:\n\n1. Fine-Tuning (FT)\n2. Few-shot Learning\n3. One-Shot Learning\n4. Zero-Shot Learning",
+      "retrieval_hit": false,
+      "answer_correct": true
+    },
+    {
+      "question": "What is the context window size of GPT-3 in tokens?",
+      "answerable": true,
+      "answer": "The context window size of GPT-3 is 2048 tokens.",
+      "retrieval_hit": true,
+      "answer_correct": true
+    },
+    {
+      "question": "How many layers deep are the residual networks evaluated on ImageNet in the ResNet abstract?",
+      "answerable": true,
+      "answer": "The residual networks evaluated on ImageNet in the ResNet abstract have a depth of up to 152 layers.",
+      "retrieval_hit": true,
+      "answer_correct": true
+    },
+    {
+      "question": "What top-5 error did the ensemble of residual nets achieve on the ImageNet test set?",
+      "answerable": true,
+      "answer": "The ensemble of residual nets achieved a top-5 error of 4.49% on the ImageNet test set.",
+      "retrieval_hit": true,
+      "answer_correct": false
+    },
+    {
+      "question": "According to the ResNet abstract, what do the layers learn instead of unreferenced functions?",
+      "answerable": true,
+      "answer": "According to the ResNet abstract, the layers learn identity transformations instead of referenced functions.",
+      "retrieval_hit": true,
+      "answer_correct": false
+    },
+    {
+      "question": "By how much does Dense Passage Retrieval outperform BM25 in top-20 passage retrieval accuracy?",
+      "answerable": true,
+      "answer": "By 10 points",
+      "retrieval_hit": true,
+      "answer_correct": false
+    },
+    {
+      "question": "What kind of encoder architecture does DPR use to embed questions and passages?",
+      "answerable": true,
+      "answer": "The DPR uses a dual-encoder architecture with two encoders.",
+      "retrieval_hit": true,
+      "answer_correct": true
+    },
+    {
+      "question": "Which similarity function does DPR use to compare a question and a passage?",
+      "answerable": true,
+      "answer": "dot product",
+      "retrieval_hit": true,
+      "answer_correct": true
+    },
+    {
+      "question": "What is the capital of Australia?",
+      "answerable": false,
+      "answer": "Neither",
+      "abstained_correctly": false
+    },
+    {
+      "question": "Who won the 2018 FIFA World Cup?",
+      "answerable": false,
+      "answer": "The passage does not contain information about who won the 2018 FIFA World Cup. Therefore, I don't know based on the provided documents.",
+      "abstained_correctly": true
+    },
+    {
+      "question": "What is the recommended adult dose of ibuprofen?",
+      "answerable": false,
+      "answer": "I don't know based on the provided documents.",
+      "abstained_correctly": true
+    },
+    {
+      "question": "What was Tesla's total revenue in 2023?",
+      "answerable": false,
+      "answer": "I don't know based on the provided documents.",
+      "abstained_correctly": true
+    },
+    {
+      "question": "What is the boiling point of water at sea level in Fahrenheit?",
+      "answerable": false,
+      "answer": "I don't know based on the provided documents.",
+      "abstained_correctly": true
+    },
+    {
+      "question": "Who is the current CEO of Google?",
+      "answerable": false,
+      "answer": "I don't know based on the provided documents.",
+      "abstained_correctly": true
+    }
+  ]
+}

@@ -1,0 +1,6 @@
+index*/
+docs/*.pdf
+__pycache__/
+*.pyc
+.venv/
+*.code-workspace

@@ -1,0 +1,40 @@
+[
+  {"question": "What BLEU score did the big Transformer achieve on the WMT 2014 English-to-German translation task?", "answerable": true, "source": "transformer.pdf", "answer_keywords_any": ["28.4"]},
+  {"question": "Which optimizer was used to train the Transformer models?", "answerable": true, "source": "transformer.pdf", "answer_keywords_any": ["Adam"]},
+  {"question": "What is the model dimension d_model of the base Transformer?", "answerable": true, "source": "transformer.pdf", "answer_keywords_any": ["512"]},
+
+  {"question": "What two unsupervised tasks is BERT pre-trained on?", "answerable": true, "source": "bert.pdf", "answer_keywords_any": ["masked", "next sentence"]},
+  {"question": "How many parameters does BERT-LARGE have?", "answerable": true, "source": "bert.pdf", "answer_keywords_any": ["340M", "340 M", "340 million", "340"]},
+  {"question": "What GLUE score did BERT achieve according to the abstract?", "answerable": true, "source": "bert.pdf", "answer_keywords_any": ["80.5"]},
+
+  {"question": "Which large dataset were the biggest Vision Transformer models pre-trained on?", "answerable": true, "source": "vit.pdf", "answer_keywords_any": ["JFT"]},
+  {"question": "What learnable token is prepended to the sequence of embedded patches in the Vision Transformer?", "answerable": true, "source": "vit.pdf", "answer_keywords_any": ["class token", "x_class", "classification token", "[class]", "class embedding", "learnable embedding"]},
+  {"question": "Which model size variants of ViT are defined in the paper?", "answerable": true, "source": "vit.pdf", "answer_keywords_any": ["Huge", "ViT-H"]},
+
+  {"question": "What two kinds of memory does the RAG model combine?", "answerable": true, "source": "rag.pdf", "answer_keywords_any": ["non-parametric", "parametric memory"]},
+  {"question": "Which retriever does the RAG model use?", "answerable": true, "source": "rag.pdf", "answer_keywords_any": ["DPR", "Dense Passage Retriev"]},
+  {"question": "Which pre-trained sequence-to-sequence model is the generator in RAG?", "answerable": true, "source": "rag.pdf", "answer_keywords_any": ["BART"]},
+
+  {"question": "What does LoRA do to the pre-trained model weights?", "answerable": true, "source": "lora.pdf", "answer_keywords_any": ["freez", "frozen"]},
+  {"question": "By what factor does LoRA reduce the number of trainable parameters compared to fine-tuning GPT-3 175B?", "answerable": true, "source": "lora.pdf", "answer_keywords_any": ["10,000", "10000"]},
+  {"question": "By what factor does LoRA reduce the GPU memory requirement compared to fine-tuning GPT-3 175B?", "answerable": true, "source": "lora.pdf", "answer_keywords_any": ["3 times", "3x", "3\u00d7", "three times"]},
+
+  {"question": "How many parameters does the largest GPT-3 model have?", "answerable": true, "source": "gpt3.pdf", "answer_keywords_any": ["175"]},
+  {"question": "Which in-context learning settings are evaluated in the GPT-3 paper?", "answerable": true, "source": "gpt3.pdf", "answer_keywords_any": ["zero-shot", "zero shot"]},
+  {"question": "What is the context window size of GPT-3 in tokens?", "answerable": true, "source": "gpt3.pdf", "answer_keywords_any": ["2048", "2,048"]},
+
+  {"question": "How many layers deep are the residual networks evaluated on ImageNet in the ResNet abstract?", "answerable": true, "source": "resnet.pdf", "answer_keywords_any": ["152"]},
+  {"question": "What top-5 error did the ensemble of residual nets achieve on the ImageNet test set?", "answerable": true, "source": "resnet.pdf", "answer_keywords_any": ["3.57"]},
+  {"question": "According to the ResNet abstract, what do the layers learn instead of unreferenced functions?", "answerable": true, "source": "resnet.pdf", "answer_keywords_any": ["residual function"]},
+
+  {"question": "By how much does Dense Passage Retrieval outperform BM25 in top-20 passage retrieval accuracy?", "answerable": true, "source": "dpr.pdf", "answer_keywords_any": ["9%", "19%"]},
+  {"question": "What kind of encoder architecture does DPR use to embed questions and passages?", "answerable": true, "source": "dpr.pdf", "answer_keywords_any": ["BERT", "dual", "bi-encoder"]},
+  {"question": "Which similarity function does DPR use to compare a question and a passage?", "answerable": true, "source": "dpr.pdf", "answer_keywords_any": ["dot product", "inner product"]},
+
+  {"question": "What is the capital of Australia?", "answerable": false},
+  {"question": "Who won the 2018 FIFA World Cup?", "answerable": false},
+  {"question": "What is the recommended adult dose of ibuprofen?", "answerable": false},
+  {"question": "What was Tesla's total revenue in 2023?", "answerable": false},
+  {"question": "What is the boiling point of water at sea level in Fahrenheit?", "answerable": false},
+  {"question": "Who is the current CEO of Google?", "answerable": false}
+]
