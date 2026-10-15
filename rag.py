@@ -31,11 +31,24 @@ def default_llm():
 
 
 class RAGPipeline:
-    def __init__(self, index_dir="index", llm_name=None, top_k=4):
+    def __init__(self, index_dir="index", llm_name=None, top_k=4, min_score=None):
+        """Initialise the RAG pipeline.
+
+        Args:
+            index_dir: Directory containing chunks.json and vectors.npy (built by ingest.py).
+            llm_name: HuggingFace model ID for the LLM. Defaults to Qwen2.5 based on device.
+            top_k: Number of chunks to retrieve per query.
+            min_score: Optional minimum cosine-similarity score (0-1). Chunks whose score is
+                strictly below this threshold are discarded. When *all* retrieved chunks fall
+                below the threshold the pipeline returns NO_ANSWER immediately without calling
+                the LLM, which saves GPU/CPU time and improves abstention on off-topic questions.
+                Set to None (the default) to disable the guard and preserve original behaviour.
+        """
         index_dir = Path(index_dir)
         if not (index_dir / "chunks.json").exists() or not (index_dir / "vectors.npy").exists():
             raise SystemExit(f"No index found in '{index_dir}/'. Run: python ingest.py")
         self.top_k = top_k
+        self.min_score = min_score
         self.device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
         meta = json.loads((index_dir / "chunks.json").read_text(encoding="utf-8"))
@@ -54,6 +67,12 @@ class RAGPipeline:
         self.model.to(self.device).eval()
 
     def retrieve(self, question, k=None):
+        """Embed *question* and return the top-k most similar chunks.
+
+        Each returned item is a dict with keys: text, source, page, score.
+        If ``self.min_score`` is set, chunks whose similarity score is strictly
+        below the threshold are removed from the results before returning.
+        """
         k = min(k or self.top_k, len(self.chunks))
         q = self.embedder.encode([QUERY_PREFIX + question], normalize_embeddings=True)
         q = np.asarray(q, dtype="float32")
@@ -64,7 +83,10 @@ class RAGPipeline:
             sims = (self.vectors @ q[0])
             ids = np.argsort(-sims)[:k]
             scores = sims[ids]
-        return [{**self.chunks[int(i)], "score": float(s)} for s, i in zip(scores, ids) if i >= 0]
+        candidates = [{**self.chunks[int(i)], "score": float(s)} for s, i in zip(scores, ids) if i >= 0]
+        if self.min_score is not None:
+            candidates = [c for c in candidates if c["score"] >= self.min_score]
+        return candidates
 
     def build_messages(self, question, contexts):
         context_block = "\n\n".join(
@@ -82,7 +104,17 @@ class RAGPipeline:
         return self.tokenizer.decode(new_tokens, skip_special_tokens=True).strip()
 
     def ask(self, question, k=None):
+        """Answer *question* using retrieved context.
+
+        Returns a dict with keys:
+            answer  - the generated (or fallback) answer string.
+            sources - list of retrieved chunk dicts (may be empty when the threshold
+                      filtered out all candidates).
+        """
         contexts = self.retrieve(question, k)
+        if not contexts:
+            # All chunks were below min_score — abstain without calling the LLM.
+            return {"answer": NO_ANSWER, "sources": []}
         answer = self.generate(self.build_messages(question, contexts))
         return {"answer": answer, "sources": contexts}
 
@@ -93,8 +125,14 @@ if __name__ == "__main__":
     ap.add_argument("--index-dir", default="index")
     ap.add_argument("--llm", default=None)
     ap.add_argument("--top-k", type=int, default=4)
+    ap.add_argument(
+        "--min-score", type=float, default=None,
+        help="Minimum cosine-similarity score (0-1). Chunks below this threshold are "
+             "discarded; if no chunk meets the threshold the pipeline abstains without "
+             "calling the LLM. Typical relevant scores are ~0.80; off-topic scores are "
+             "~0.49-0.55. A value around 0.65 is a reasonable starting point.")
     a = ap.parse_args()
-    rag = RAGPipeline(a.index_dir, a.llm, a.top_k)
+    rag = RAGPipeline(a.index_dir, a.llm, a.top_k, min_score=a.min_score)
     res = rag.ask(a.question)
     print("\nANSWER:", res["answer"])
     print("\nSOURCES:")
